@@ -17,6 +17,7 @@ struct Node * tree_add(struct Node * tree, Data x);
 
 void tree_print(struct Node * tree);
 
+void tree_destroy (struct Node * tree);
 
 int main ()
 {
@@ -58,5 +59,14 @@ void tree_print (struct Node * tree) {
 	tree_print(tree->left);                     //Рекурсивная функция для левого поддерева
 	printf("%d ", tree->val);                   //Отображаем корень дерева
 	tree_print(tree->right);                    //Рекурсивная функция для правого поддерева
+}
+
+
+void tree_destroy (struct Node * tree) {
+	if (tree == NULL)
+		return;
+	tree_destroy(tree->left);
+	tree_destroy(tree->right);
+	free(tree);
 }
 
